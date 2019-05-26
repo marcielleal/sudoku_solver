@@ -114,17 +114,74 @@ Sudoku::Sudoku(std::string puzzle_input){
 	alocate_cell_matrix();
 	initialize_values(puzzle_input);
 	set_adjacencies();
+	test_cell(0);
+	print_answer();
 }
 
 Cell* Sudoku::index_to_cell(int current_index){
 	//divides by 9 to get the line you're at
-	int current_row = i/SUDOKU_LINES;
+	int current_row = current_index/SUDOKU_LINES;
 	//modulum 9 gives the column you're at
-	int current_col = i%SUDOKU_LINES;
+	int current_col = current_index%SUDOKU_LINES;
 
+	//returns a pointer to the corresponding cell
 	return cell_matrix[current_row][current_col];
 }
 
-bool Sudoku::TestCell(int current_index){
+void Sudoku::print_answer(){
+	for(int i = 0;i < 81; i++){
+		if(i%9==0 && i != 0)std::cout<<std::endl;
+		std::cout<<answer.at(i);
+	}
+	std::cout<<std::endl;
+}
 
+bool Sudoku::test_cell(int current_index){
+	//std::cout<<current_index<<" ";
+
+	//Stop condition
+	if(current_index == 81){return true;}
+	//Gets from index the cell to deal with
+	Cell* current_cell;
+	current_cell = index_to_cell(current_index);
+	//Checks if it is a tip (value can't be changed)
+	if(current_cell->get_is_tip()){
+		//Skips changing the values of tips
+		if(test_cell(current_index + 1)){
+			//Put the correct number in the front of the answer stack
+			answer.insert(answer.begin(), current_cell->get_value());
+			//tells the previous cell to do the same
+			return true;
+		}else{
+			//The only difference is that tips don't change value after failing
+			//they instantly backtrack if the next index find no answer
+			return false;
+		}
+	}else{
+		//Tries to find a legal number, if it finds, test next index
+		//If it can't find any legal value it backtracks
+		for(int guess_value = 1; guess_value < 10; guess_value++){
+			//Changes current value searching for an answer
+			current_cell->set_value(guess_value);
+			//If the new value is valid, try to find an answer for the next index
+			if( current_cell->is_legal() ){
+				//tests recursively new answers if it finds, add it to the answer list
+				if(test_cell(current_index + 1)){
+					//Put the correct (current) guess in the front of the answer stack
+					answer.insert(answer.begin(), guess_value);
+					//tells the previous cell to do the same
+					return true;
+				}
+				//otherwise just change the current number and try again
+			}
+			//number tried was not legal, or derivated no legal answer, try another number
+			//If no number gave a valid answer, backtrack.
+		}
+		//Backtracking
+		//If the first node tried all numbers and were false, then there is no answer
+		if(current_index == 0) std::cout << "no possible answer for this puzzle" << std::endl;
+		//Signals previous node to change value or backtrack
+		return false;
+	}
+	
 }

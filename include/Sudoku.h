@@ -2,12 +2,13 @@
 #define SUDOKUH
 
 #include <string>
+#include <vector>
 #include "Cell.h"
 
 class Sudoku{
 private:
 	Cell*** cell_matrix;
-
+	std::vector<int> answer;
 public:
 	Sudoku();
 	Sudoku(std::string);
@@ -18,7 +19,9 @@ public:
 	void set_cell_rules(Cell*,int,int);
 	void show_sudoku();
 	Cell* index_to_cell(int);
-	bool solve();
+	bool test_cell(int);
+	void print_answer();
+
 };
 
 #endif

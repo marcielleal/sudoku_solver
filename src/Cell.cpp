@@ -38,9 +38,12 @@ void Cell::say_adjacents(){
 }
 
 bool Cell::is_legal(){
+	if(value == 0) return false;
+
 	for(int i = 0;i < adjacent_to.size();i++){
 		int adjacent_value = adjacent_to.at(i)->get_value();
-		if(adjacent_value == value && adjacent_value!= 0 )return false;
+		if(adjacent_value == value)return false;
 	}
+
 	return true;
 }
