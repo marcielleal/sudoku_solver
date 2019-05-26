@@ -118,17 +118,24 @@ Sudoku::Sudoku(std::string puzzle_input){
 	print_answer();
 }
 
-Cell** Sudoku::index_to_cell(int current_index){
+Cell* Sudoku::index_to_cell(int current_index){
 	//divides by 9 to get the line you're at
 	int current_row = current_index/SUDOKU_LINES;
 	//modulum 9 gives the column you're at
 	int current_col = current_index%SUDOKU_LINES;
 
 	//returns a pointer to the corresponding cell
-	return &cell_matrix[current_row][current_col];
+	return cell_matrix[current_row][current_col];
 }
 
 void Sudoku::print_answer(){
+	if(answer.size()!=81){
+		std::cout<<"No answer found!"<<std::endl;
+		return;
+	}
+
+	std::cout<<"answer for the puzzle:"<<std::endl<<std::endl<<std::endl;
+
 	for(int i = 0;i < 81; i++){
 		if(i%9==0 && i != 0)std::cout<<std::endl;
 		std::cout<<answer.at(i);
@@ -137,18 +144,16 @@ void Sudoku::print_answer(){
 }
 
 bool Sudoku::test_cell(int current_index){
-	//std::cout<<current_index<<" ";
-
 	//Stop condition
 	if(current_index == 81){return true;}
 	//Gets from index the cell to deal with
-	Cell** current_cell = index_to_cell(current_index);
+	Cell* current_cell = index_to_cell(current_index);
 	//Checks if it is a tip (value can't be changed)
-	if((*current_cell)->get_is_tip()){
+	if(current_cell->get_is_tip()){
 		//Skips changing the values of tips
 		if(test_cell(current_index + 1)){
 			//Put the correct number in the front of the answer stack
-			answer.insert(answer.begin(), (*current_cell)->get_value());
+			answer.insert(answer.begin(), current_cell->get_value());
 			//tells the previous cell to do the same
 			return true;
 		}else{
@@ -162,9 +167,9 @@ bool Sudoku::test_cell(int current_index){
 		//If it can't find any legal value it backtracks
 		for(int guess_value = 1; guess_value < 10; guess_value++){
 			//Changes current value searching for an answer
-			(*current_cell)->set_value(guess_value);
+			current_cell->set_value(guess_value);
 			//If the new value is valid, try to find an answer for the next index
-			if( (*current_cell)->is_legal() ){
+			if( current_cell->is_legal() ){
 				//tests recursively new answers if it finds, add it to the answer list
 				if(test_cell(current_index + 1)){
 					//Put the correct (current) guess in the front of the answer stack
