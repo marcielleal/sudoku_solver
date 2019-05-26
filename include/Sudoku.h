@@ -17,6 +17,8 @@ public:
 	void set_adjacencies();
 	void set_cell_rules(Cell*,int,int);
 	void show_sudoku();
+	Cell* index_to_cell(int);
+	bool solve();
 };
 
 #endif

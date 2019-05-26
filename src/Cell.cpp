@@ -36,3 +36,11 @@ void Cell::say_adjacents(){
 		std::cout<<adjacent_to.at(i)->get_value()<<" ";
 	}
 }
+
+bool Cell::is_legal(){
+	for(int i = 0;i < adjacent_to.size();i++){
+		int adjacent_value = adjacent_to.at(i)->get_value();
+		if(adjacent_value == value && adjacent_value!= 0 )return false;
+	}
+	return true;
+}

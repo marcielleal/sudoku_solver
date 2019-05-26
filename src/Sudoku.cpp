@@ -99,8 +99,6 @@ void Sudoku::set_cell_rules(Cell* target, int target_row, int target_col){
 			}
 		}
 	}
-
-
 }
 
 void Sudoku::show_sudoku(){
@@ -116,6 +114,17 @@ Sudoku::Sudoku(std::string puzzle_input){
 	alocate_cell_matrix();
 	initialize_values(puzzle_input);
 	set_adjacencies();
-	cell_matrix[0][0]->say_adjacents();
 }
 
+Cell* Sudoku::index_to_cell(int current_index){
+	//divides by 9 to get the line you're at
+	int current_row = i/SUDOKU_LINES;
+	//modulum 9 gives the column you're at
+	int current_col = i%SUDOKU_LINES;
+
+	return cell_matrix[current_row][current_col];
+}
+
+bool Sudoku::TestCell(int current_index){
+
+}

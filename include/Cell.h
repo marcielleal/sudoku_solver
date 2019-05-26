@@ -17,6 +17,7 @@ public:
 	void create_edge(Cell*);
 	bool is_adjacent_to(Cell*);
 	void say_adjacents();
+	bool is_legal();
 };
 
 #endif
