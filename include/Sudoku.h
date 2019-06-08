@@ -9,18 +9,21 @@ class Sudoku{
 private:
 	Cell*** cell_matrix;
 	std::vector<int> answer;
-public:
-	Sudoku();
-	Sudoku(std::string);
-
+	bool test_cell(int);
+	Cell* index_to_cell(int);
 	void initialize_values(std::string);
 	void alocate_cell_matrix();
 	void set_adjacencies();
 	void set_cell_rules(Cell*,int,int);
-	void show_sudoku();
-	Cell* index_to_cell(int);
-	bool test_cell(int);
+
+public:
+	Sudoku();
+	Sudoku(std::string);
+
+	void show_sudoku();	
 	void print_answer();
+
+	void solve();
 
 };
 

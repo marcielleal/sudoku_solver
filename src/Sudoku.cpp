@@ -114,10 +114,11 @@ void Sudoku::show_sudoku(){
 Sudoku::Sudoku(std::string puzzle_input){
 	alocate_cell_matrix();
 	initialize_values(puzzle_input);
-	show_sudoku();
-	set_adjacencies();
+	set_adjacencies();	
+}
+
+void Sudoku::solve(){
 	test_cell(0);
-	print_answer();	
 }
 
 Cell* Sudoku::index_to_cell(int current_index){
