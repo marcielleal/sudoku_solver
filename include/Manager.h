@@ -14,8 +14,9 @@ private:
 public:
 	Manager();
 	void init_lists();
-	void say_answers();
-
+	void time_test_list();
+	void export_time_csv();
+	void solve_random();
 };
 
 #endif
