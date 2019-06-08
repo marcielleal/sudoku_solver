@@ -11,12 +11,15 @@ private:
 
 	std::vector< int > times_list;
 
+	void clear_screen();
+
 public:
 	Manager();
 	void init_lists();
 	void time_test_list();
 	void export_time_csv();
 	void solve_random();
+	void display();
 };
 
 #endif

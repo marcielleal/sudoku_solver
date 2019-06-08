@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 
+
 #include "Sudoku.h"
 #include "Manager.h"
 
@@ -71,16 +72,62 @@ void Manager::solve_random(){
 
 	Sudoku sudoku(puzzle_list.at(selected));
 	sudoku.show_sudoku();
+
+	auto begin = std::chrono::high_resolution_clock::now();
+
 	sudoku.solve();
+
+	auto end = std::chrono::high_resolution_clock::now();    
+    auto dur = end - begin;
+    auto ms = std::chrono::duration_cast<std::chrono::microseconds >(dur).count();
+
 	sudoku.print_answer();
+
+
 
 }
 
 void Manager::display(){
+	clear_screen();
+	std::cout << "Loading..." << std::endl;
+	clear_screen();
+
 	init_lists();
+
 
 	int option;
 
-	std::cin
 
+	do{
+		std::cout <<
+		"1 - Solve list and report time\n"<<
+		"2 - Solve a random puzzle from the list\n"<<
+		"3 - Exit\n";
+
+		std::cin >> option;
+
+		switch(option){
+			case 1:
+				time_test_list();
+				export_time_csv();
+				break;
+			case 2:
+				solve_random();
+				break;
+			default:
+				return;
+		}
+
+		std::cout << "Press any key to continue" << std::endl;
+		std::cin.ignore();
+		std::getchar();
+		clear_screen();
+
+
+	}while(true);
+
+}
+
+void Manager::clear_screen(){
+	std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
 }

@@ -21,10 +21,13 @@ int main(){
 	
 	Manager manager;
 
+	manager.display();
+
+	/*
 	manager.init_lists();
 	manager.time_test_list();
 	manager.export_time_csv();
-	
+	*/
 
 	//manager.say_answers();
 
