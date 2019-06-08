@@ -101,6 +101,7 @@ void Sudoku::set_cell_rules(Cell* target, int target_row, int target_col){
 	}
 }
 
+
 void Sudoku::show_sudoku(){
 	std::cout<<"Puzzle propsed: "<<std::endl<<std::endl;
 	for(int i = 0; i<9; i++){
@@ -197,4 +198,14 @@ bool Sudoku::test_cell(int current_index){
 		return false;
 	}
 	
+}
+
+std::string Sudoku::get_answer(){
+	std::string str_answer;
+
+	for(int i = 0; i < answer.size(); i++){
+		str_answer += (char)(answer.at(i) + 48);
+	}
+
+	return str_answer;
 }

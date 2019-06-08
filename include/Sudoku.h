@@ -23,6 +23,8 @@ public:
 	void show_sudoku();	
 	void print_answer();
 
+	std::string get_answer();
+
 	void solve();
 
 };
