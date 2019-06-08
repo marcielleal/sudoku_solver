@@ -17,7 +17,6 @@ void Manager::init_lists(){
 	std::ifstream file ("/home/eric/Faculdade/Grafos/input/sudoku_input/sudoku.csv");
 	
 	while (file && getline(file, line)){
-		//if (line.length() == 0)continue;
 
 		puzzle = line.substr(0,81);
 		answer = line.substr(82,81);
@@ -83,9 +82,29 @@ void Manager::solve_random(){
 
 	sudoku.print_answer();
 
+	char choice;
 
+	do{
+
+	std::cout << "Make report? Y/N" << std::endl;
+
+	std::cin >> choice;
+
+	if(choice == 'Y' || choice == 'y' ){
+		std::cout << "Solving time : " << (int)ms << " microseconds " << std::endl;
+
+		return;
+	}else if (choice == 'N' || choice == 'n' ){
+		return;
+	}else{
+		clear_screen();
+		std::cout << "Invalid option" << std::endl;
+	}
+
+	}while (true);
 
 }
+
 
 void Manager::display(){
 	clear_screen();
