@@ -5,8 +5,7 @@ Cell::Cell(){}
 
 Cell::Cell(int value){
 	this->value  = value;
-	this->is_tip = !(value == 0);// THIS IS THE RIGHT ONE, BUT IT CAUSES SEGFAULT (fix)
-	//this->is_tip = (value == 0);
+	this->is_tip = !(value == 0);
 }
 
 bool Cell::get_is_tip(){

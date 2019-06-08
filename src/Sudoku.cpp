@@ -102,6 +102,7 @@ void Sudoku::set_cell_rules(Cell* target, int target_row, int target_col){
 }
 
 void Sudoku::show_sudoku(){
+	std::cout<<"Puzzle propsed: "<<std::endl<<std::endl;
 	for(int i = 0; i<9; i++){
 		for(int j=0;j<9;j++){
 			std::cout<<cell_matrix[i][j]->get_value()<<" ";
@@ -113,9 +114,10 @@ void Sudoku::show_sudoku(){
 Sudoku::Sudoku(std::string puzzle_input){
 	alocate_cell_matrix();
 	initialize_values(puzzle_input);
+	show_sudoku();
 	set_adjacencies();
 	test_cell(0);
-	print_answer();
+	print_answer();	
 }
 
 Cell* Sudoku::index_to_cell(int current_index){
@@ -134,11 +136,11 @@ void Sudoku::print_answer(){
 		return;
 	}
 
-	std::cout<<"answer for the puzzle:"<<std::endl<<std::endl<<std::endl;
+	std::cout<<"answer to the puzzle:"<<std::endl<<std::endl;
 
 	for(int i = 0;i < 81; i++){
 		if(i%9==0 && i != 0)std::cout<<std::endl;
-		std::cout<<answer.at(i);
+		std::cout<<answer.at(i)<<" ";
 	}
 	std::cout<<std::endl;
 }
@@ -182,7 +184,12 @@ bool Sudoku::test_cell(int current_index){
 			//number tried was not legal, or derivated no legal answer, try another number
 			//If no number gave a valid answer, backtrack.
 		}
+
 		//Backtracking
+
+		//Sets value back to zero in order to allow previous cells to try new values
+		current_cell->set_value(0);
+
 		//If the first node tried all numbers and were false, then there is no answer
 		if(current_index == 0) std::cout << "no possible answer for this puzzle" << std::endl;
 		//Signals previous node to change value or backtrack
