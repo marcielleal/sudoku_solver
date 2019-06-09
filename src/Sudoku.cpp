@@ -103,7 +103,7 @@ void Sudoku::set_cell_rules(Cell* target, int target_row, int target_col){
 
 
 void Sudoku::show_sudoku(){
-	std::cout<<"Puzzle propsed: "<<std::endl<<std::endl;
+	std::cout<<"Puzzle propsed: "<<std::endl;
 	for(int i = 0; i<9; i++){
 		for(int j=0;j<9;j++){
 			std::cout<<cell_matrix[i][j]->get_value()<<" ";
@@ -138,7 +138,7 @@ void Sudoku::print_answer(){
 		return;
 	}
 
-	std::cout<<"answer to the puzzle:"<<std::endl<<std::endl;
+	std::cout<<"Answer to the puzzle:"<<std::endl;
 
 	for(int i = 0;i < 81; i++){
 		if(i%9==0 && i != 0)std::cout<<std::endl;

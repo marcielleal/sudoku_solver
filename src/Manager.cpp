@@ -118,29 +118,13 @@ void Manager::solve_random(){
 	bool is_matching = (sudoku.get_answer() == answer_list.at(selected) );
 	char choice;
 
-	do{
 
-	std::cout << "Show report? Y/N" << std::endl;
-
-	std::cin >> choice;
-
-	if(choice == 'Y' || choice == 'y' ){
-		std::cout << "Solving time : " << (int)ms << " microseconds " << std::endl;
-			if(is_matching){
-				std::cout << "The solution found matches the expected one" << std::endl;
-			}else{
-				std::cout << "The solution found doesn't match the expected one" << std::endl;
-			}
-		return;
-	}else if (choice == 'N' || choice == 'n' ){
-		return;
+	std::cout << "Solving time : " << (int)ms << " microseconds " << std::endl;
+	if(is_matching){
+		std::cout << "The solution found matches the expected one" << std::endl;
 	}else{
-		clear_screen();
-		std::cout << "Invalid option" << std::endl;
-
+		std::cout << "The solution found doesn't match the expected one" << std::endl;
 	}
-
-	}while (true);
 
 }
 
