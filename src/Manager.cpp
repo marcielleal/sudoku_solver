@@ -158,20 +158,24 @@ void Manager::display(){
 
 	do{
 		std::cout <<
-		"1 - Solve list and report time\n"<<
-		"2 - Solve a random puzzle from the list\n"<<
-		"3 - Exit\n";
+		"1 - Solve a random puzzle from the list\n"<<
+		"2 - Solve list and report time\n"<<
+		"3 - Check if answers match the expected ones\n"<<
+		"4 - Exit\n";
 
 		std::cin >> option;
 		clear_screen();
 
 		switch(option){
 			case 1:
+				solve_random();
+				break;
+			case 2:
 				time_test_list();
 				export_time_csv();
 				break;
-			case 2:
-				solve_random();
+			case 3:
+				answer_test_list();
 				break;
 			default:
 				return;
