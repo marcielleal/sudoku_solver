@@ -15,10 +15,16 @@ private:
 
 public:
 	Manager();
+	
 	void init_lists();
+
 	void time_test_list();
+	void answer_test_list();
+
 	void export_time_csv();
+
 	void solve_random();
+
 	void display();
 };
 

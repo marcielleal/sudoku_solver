@@ -28,6 +28,40 @@ void Manager::init_lists(){
 
 }
 
+void Manager::answer_test_list(){
+
+	std::vector<int> not_matching_list;
+
+	int puzzle_count = puzzle_list.size();
+
+	for(int i = 0; i < puzzle_count ; i++){
+		
+		std::cout<< "resolvendo " << i << std::endl;
+
+		Sudoku sudoku( puzzle_list.at(i) );
+
+		sudoku.solve();
+
+		if(sudoku.get_answer() != answer_list.at(i))
+			not_matching_list.push_back(i);
+	}
+
+	clear_screen();
+
+	int unmatching_count = not_matching_list.size();
+
+	std::cout<< "tested " << puzzle_count << " puzzles" << std::endl;
+	if( unmatching_count == 0 ){
+		std::cout << "every puzzle got the expected answer" << std::endl;
+	}else{
+		std::cout << unmatching_count << " puzzles showed unexpected answers at lines: ";
+		for(int i = 0; i < unmatching_count; i++){
+			std::cout << not_matching_list.at(i) << "," << std::endl;
+		}
+	}
+}
+
+
 void Manager::time_test_list(){
 
 	auto begin = std::chrono::high_resolution_clock::now();
@@ -81,24 +115,29 @@ void Manager::solve_random(){
     auto ms = std::chrono::duration_cast<std::chrono::microseconds >(dur).count();
 
 	sudoku.print_answer();
-
+	bool is_matching = (sudoku.get_answer() == answer_list.at(selected) );
 	char choice;
 
 	do{
 
-	std::cout << "Make report? Y/N" << std::endl;
+	std::cout << "Show report? Y/N" << std::endl;
 
 	std::cin >> choice;
 
 	if(choice == 'Y' || choice == 'y' ){
 		std::cout << "Solving time : " << (int)ms << " microseconds " << std::endl;
-
+			if(is_matching){
+				std::cout << "The solution found matches the expected one" << std::endl;
+			}else{
+				std::cout << "The solution found doesn't match the expected one" << std::endl;
+			}
 		return;
 	}else if (choice == 'N' || choice == 'n' ){
 		return;
 	}else{
 		clear_screen();
 		std::cout << "Invalid option" << std::endl;
+
 	}
 
 	}while (true);
@@ -124,6 +163,7 @@ void Manager::display(){
 		"3 - Exit\n";
 
 		std::cin >> option;
+		clear_screen();
 
 		switch(option){
 			case 1:
@@ -137,7 +177,7 @@ void Manager::display(){
 				return;
 		}
 
-		std::cout << "Press any key to continue" << std::endl;
+		std::cout << "Press enter to continue" << std::endl;
 		std::cin.ignore();
 		std::getchar();
 		clear_screen();

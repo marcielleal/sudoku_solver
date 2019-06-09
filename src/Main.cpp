@@ -11,19 +11,19 @@ int main(){
 	//auto begin = std::chrono::high_resolution_clock::now();    
 
 
-	
+	/*
 	Sudoku sudoku("900000400500219000023080070004700298001000003090300004052007060070004980030162500");
 	sudoku.show_sudoku();
 	sudoku.solve();
-	std::cout << sudoku.get_answer() << std::endl;
+	//std::cout << sudoku.get_answer() << std::endl;
 
 	//sudoku.print_answer();
-	
+	*/
 
 	
-	//Manager manager;
+	Manager manager;
 
-	//manager.display();
+	manager.display();
 
 	/*
 	manager.init_lists();
