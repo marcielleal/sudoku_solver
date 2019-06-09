@@ -14,7 +14,7 @@ void Manager::init_lists(){
 	std::string puzzle;
 	std::string answer;
 
-	std::ifstream file ("/home/eric/Faculdade/Grafos/input/sudoku_input/sudoku.csv");
+	std::ifstream file ("./input/sudoku.csv");
 	
 	while (file && getline(file, line)){
 
