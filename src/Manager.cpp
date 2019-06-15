@@ -180,6 +180,7 @@ void Manager::display(){
 				break;
 			case 2:
 				time_test_list();
+				clear_screen();
 				export_time_csv();
 				break;
 			case 3:
