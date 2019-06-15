@@ -9,8 +9,10 @@ private:
 	bool is_tip;
 	std::vector<Cell*> adjacent_to;
 public:
+	~Cell();
 	Cell();
 	Cell(int);
+
 	bool get_is_tip();
 	int  get_value();
 	void set_value(int);

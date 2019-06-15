@@ -8,6 +8,7 @@
 class Sudoku{
 private:
 	Cell*** cell_matrix;
+	
 	std::vector<int> answer;
 	bool test_cell(int);
 	Cell* index_to_cell(int);
@@ -19,6 +20,8 @@ private:
 public:
 	Sudoku();
 	Sudoku(std::string);
+
+	~Sudoku();
 
 	void show_sudoku();	
 	void print_answer();

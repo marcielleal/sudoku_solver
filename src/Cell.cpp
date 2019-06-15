@@ -1,6 +1,14 @@
 #include "Cell.h"
 #include <iostream>
 
+
+Cell::~Cell(){
+	int size = adjacent_to.size();
+
+	for(int i = 0;i < size ;i++)
+		delete adjacent_to.at(i);
+}
+
 Cell::Cell(){}
 
 Cell::Cell(int value){

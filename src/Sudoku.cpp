@@ -6,6 +6,27 @@
 #include <iostream>
 #include <string>
 
+
+
+Sudoku::~Sudoku(){
+
+	int rows = SUDOKU_LINES;
+	int cols = SUDOKU_LINES;
+
+	for(int r = rows; r < rows; r++){
+		for(int c = cols; c < cols; c++){
+			delete cell_matrix[r][c];
+		}
+	}
+
+
+	for (int i = 0; i < rows; ++i)
+    	delete [] cell_matrix[i];
+    
+    delete[] cell_matrix;
+}
+
+
 Sudoku::Sudoku(){}
 
 

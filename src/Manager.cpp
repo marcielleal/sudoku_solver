@@ -32,11 +32,20 @@ void Manager::answer_test_list(){
 
 	std::vector<int> not_matching_list;
 
-	int puzzle_count = puzzle_list.size();
+	std::cout << "solve how many puzzles?" << std::endl;
+
+	int puzzle_count;
+
+	std::cin >> puzzle_count;
+
+	if( puzzle_count > puzzle_list.size() ) puzzle_count = puzzle_list.size();
+
+	clear_screen();
+
 
 	for(int i = 0; i < puzzle_count ; i++){
 		
-		std::cout<< "resolvendo " << i << std::endl;
+		std::cout<< "solving " << i << std::endl;
 
 		Sudoku sudoku( puzzle_list.at(i) );
 
@@ -69,23 +78,36 @@ void Manager::time_test_list(){
 	auto dur = end - begin;
 	auto ms = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
 
+	int puzzle_count;
 
-	for(int i = 0; i < puzzle_list.size() ; i++){
+	std::cout << "solve how many puzzles?" << std::endl;
+
+	std::cin >> puzzle_count;
+
+	if( puzzle_count > puzzle_list.size() ) puzzle_count = puzzle_list.size();
+
+	clear_screen();
+
+
+	for(int i = 0; i < puzzle_count ; i++){
 		
-		std::cout<< "resolvendo " << i << std::endl;
+		std::cout<< "solving " << i << std::endl;
 
-		Sudoku sudoku( puzzle_list.at(i) );
+		Sudoku *sudoku = new Sudoku( puzzle_list.at(i) );
 
 		//inicializa a contagem em milissegundos para resolver o sudoku
 		begin = std::chrono::high_resolution_clock::now();
 
-		sudoku.solve();
+		sudoku->solve();
 
 		end = std::chrono::high_resolution_clock::now();    
     	dur = end - begin;
     	ms = std::chrono::duration_cast<std::chrono::microseconds >(dur).count();
 
     	times_list.push_back( (int)ms );
+
+    	delete sudoku;
+
 	}
 
 }
@@ -97,6 +119,8 @@ void Manager::export_time_csv(){
 	for(int i = 0; i < times_list.size(); i++){
 		file << times_list.at(i)<< std::endl;
 	}
+
+	std::cout << "Puzzles solved. Results stored at the \"output\" folder" << std::endl;
 }
 
 void Manager::solve_random(){
