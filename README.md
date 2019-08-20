@@ -14,13 +14,13 @@ This is a sudoku solver
 
 4. The interface has four commands, each one assigned to a number displayed at the menu
 ```
-	1 - Solve a random puzzle
+1 - Solve a random puzzle
 
-	2 - Solve all puzzles at the list and make a csv file reporting solving time (./output/time_record.csv)
+2 - Solve all puzzles at the list and make a csv file reporting solving time (./output/time_record.csv)
 
-	3 - Check if all the answers match the expected one (which was given at the ./input folder)
+3 - Check if all the answers match the expected one (which was given at the ./input folder)
 
-	4 - Exit
+4 - Exit
 ```
 
 Note: The full test file has 1.000.000 puzzles, "./input/sudoku_full.csv" this version uses a shorter version uses 150.000 puzzles, the "./input/sudoku_full.csv".
