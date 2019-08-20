@@ -1,6 +1,7 @@
-# Sudoku solver:
-This is 
+list-style-type:lower-roman;
 
+# Sudoku solver:
+This is a sudoku solver
 
 ## Compiling and Running
 i. To compile, enter "Make" on the root folder at a terminal
@@ -14,6 +15,7 @@ iii. The program will load puzzles and their respective answers from the ./input
 	* Leave only puzzles and answers in the file, and no blank lines.
 
 iv. The interface has four commands, each one assigned to a number displayed at the menu
+
 	1 - Solve a random puzzle
 
 	2 - Solve all puzzles at the list and make a csv file reporting solving time (./output/time_record.csv)
