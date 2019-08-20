@@ -1,20 +1,18 @@
-list-style-type:lower-roman;
-
 # Sudoku solver:
 This is a sudoku solver
 
 ## Compiling and Running
-i. To compile, enter "Make" on the root folder at a terminal
+1. To compile, enter "Make" on the root folder at a terminal
 
-ii. To run type "./run" on the root folder at a terminal
+2. To run type "./run" on the root folder at a terminal
 
-iii. The program will load puzzles and their respective answers from the ./input/sudoku.csv file
+3. The program will load puzzles and their respective answers from the ./input/sudoku.csv file
 	* Each puzzle must be given in the form of 81 digits from 0 to 9), '0' represent blank squares.
 	* Each expected answer must be given in the form of 81 digits from 1 to 9, separated by a comma.
 	* Put the puzzle before the answer.
 	* Leave only puzzles and answers in the file, and no blank lines.
 
-iv. The interface has four commands, each one assigned to a number displayed at the menu
+4. The interface has four commands, each one assigned to a number displayed at the menu
 
 	1 - Solve a random puzzle
 
